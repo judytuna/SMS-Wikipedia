@@ -27,7 +27,7 @@ post '/calc' do
 end
 
 post '/hi' do
-  "<Response><Say>Congratulations! You got through</Say></Response>"
+  "<Response><Say>Judy is super excited about Twilio! This is great!</Say></Response>"
 end
 
 
