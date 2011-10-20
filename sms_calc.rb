@@ -20,10 +20,10 @@ get '/' do
 end
 
 post '/calc' do
-  mycalc = RPNCalculator.new
-  myanswer = mycalc.evalutate(params[:Body])
+  # mycalc = RPNCalculator.new
+  # myanswer = mycalc.evalutate(params[:Body])
 
-  "<Response><Sms>You sent something!</Sms></Response>"
+  "<Response><Say>You sent something!</Say></Response>"
 end
 
 
