@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'twilio-ruby'
-require 'rpn_calculator'
+require './rpn_calculator'
 
 account_sid = 'AC60c309b5c40342009c38e91c468ff41a'
 auth_token = '45c473926f66f85d5ec3bf82f318c305'
