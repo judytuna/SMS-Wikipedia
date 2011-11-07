@@ -7,7 +7,7 @@ account_sid = 'AC60c309b5c40342009c38e91c468ff41a'
 auth_token = '45c473926f66f85d5ec3bf82f318c305'
 
 get '/' do
-  "Hi! Send a text to (415) 599-2671 with Judy's PIN and two numbers, and you'll get back their sum!!!"
+  "Hi! Call or text (415) 599-2671 with Judy's PIN. Text app not done yet =)"
   # set up a client to talk to the Twilio REST API
 #  @client = Twilio::REST::Client.new account_sid, auth_token
 
@@ -20,14 +20,12 @@ get '/' do
 end
 
 post '/calc' do
-  # mycalc = RPNCalculator.new
-  # myanswer = mycalc.evalutate(params[:Body])
+  mycalc = RPNCalculator.new
+  myanswer = mycalc.evalutate(params[:Body])
 
-  "<Response><Sms>You sent something!</Sms></Response>"
+  "<Response><Sms>" + params[:Body] + " evaluates to " myanswer + " .</Sms></Response>"
 end
 
 post '/hi' do
   "<Response><Say>Judy is super excited about Twilio! This is great!</Say></Response>"
 end
-
-
