@@ -21,7 +21,7 @@ end
 
 post '/calc' do
   mycalc = RPNCalculator.new
-  myanswer = mycalc.evaluate(params[:Body])
+  myanswer = mycalc.evaluate(params[:body])
 
   "<Response><Sms> Hello. " + myanswer + "</Sms></Response>"
   # " + params[:Body] + " evaluates to " + myanswer + "
