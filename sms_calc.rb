@@ -31,6 +31,6 @@ post '/calc' do
 end
 
 post '/hi' do
-  mytext = open-uri(
+  mytext = "hello"
   "<Response><Say>" + mytext + "</Say></Response>"
 end
