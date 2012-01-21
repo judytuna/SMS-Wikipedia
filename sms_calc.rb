@@ -3,6 +3,7 @@ require 'sinatra'
 require 'twilio-ruby'
 require './rpn_calculator'
 require 'httpclient'
+require 'open-uri'
 
 account_sid = 'AC60c309b5c40342009c38e91c468ff41a'
 auth_token = '45c473926f66f85d5ec3bf82f318c305'
@@ -27,7 +28,7 @@ post '/calc' do
   proxy = ENV['HTTP_PROXY']
   clnt = HTTPClient.new(proxy)
   clnt.set_cookie_store("cookie.dat")
-  target = ARGV.shift || "http://en.wikipedia.org/w/api.php?format=xml&action=query&titles=Main%20Page&prop=revisions&rvprop=content"
+  target = ARGV.shift || "http://en.wikipedia.org/wiki/Main_Page"
 
   puts
   puts '= GET content directly'
@@ -43,6 +44,7 @@ post '/calc' do
 end
 
 post '/hi' do
-  mytext = "hello there"
-  "<Response><Say>" + mytext + "</Say></Response>"
+  file = open('http://en.wikipedia.org/wiki/Hedy_Lamarr')
+  contents = file.read
+  "<Response><Say>" + contents + "</Say></Response>"
 end
