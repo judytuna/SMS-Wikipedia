@@ -31,6 +31,6 @@ post '/calc' do
 end
 
 post '/hi' do
-  mytext = "hello"
+  mytext = "hello there"
   "<Response><Say>" + mytext + "</Say></Response>"
 end
