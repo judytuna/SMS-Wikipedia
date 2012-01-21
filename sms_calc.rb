@@ -12,6 +12,7 @@ get '/' do
   # set up a client to talk to the Twilio REST API
 #  @client = Twilio::REST::Client.new account_sid, auth_token
 
+# the sandbox number is  (415) 599-2671
 # my pin is 3940-6402
 
   # send an sms
@@ -27,7 +28,7 @@ post '/calc' do
   @client.account.sms.messages.create(
   :from => '+14155992671',
   :to => '510-220-7769',
-  :body => '1 + 2'
+  :body => 1+2
   )
 end
 
