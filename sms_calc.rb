@@ -4,6 +4,7 @@ require 'twilio-ruby'
 require './rpn_calculator'
 require 'httpclient'
 require 'open-uri'
+require 'json'
 
 account_sid = 'AC60c309b5c40342009c38e91c468ff41a'
 auth_token = '45c473926f66f85d5ec3bf82f318c305'
@@ -51,7 +52,8 @@ get '/calc' do
 end
 
 get '/hi' do
-  file = open('http://en.wikipedia.org/wiki/Hedy_Lamarr')
+  file = open('http://en.wikipedia.org/w/api.php?action=parse&format=json&page=Arnold%20Alas&prop=text')
   contents = file.read
-  "<Response><Say>" + contents + "</Say></Response>"
+  parsed = JSON.parse contents
+  "<Response><Say>" + parsed['parse']['text']['*'] + "</Say></Response>"
 end
