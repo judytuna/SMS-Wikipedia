@@ -23,11 +23,12 @@ get '/' do
 end
 
 post '/calc' do
-  mycalc = RPNCalculator.new
-  myanswer = mycalc.evaluate(params[:body])
-
-  "<Response><Sms> Hello. " + params[:body] + "</Sms></Response>"
-  # " + params[:Body] + " evaluates to " + myanswer + "
+  @client = Twilio::REST::Client.new account_sid, auth_token
+  @client.account.sms.messages.create(
+  :from => '+14155992671',
+  :to => '510-220-7769',
+  :body => '1 + 2'
+  )
 end
 
 post '/hi' do
