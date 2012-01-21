@@ -11,6 +11,8 @@ get '/' do
   # set up a client to talk to the Twilio REST API
 #  @client = Twilio::REST::Client.new account_sid, auth_token
 
+# my pin is 3940-6402
+
   # send an sms
 #  @client.account.sms.messages.create(
 #  :from => '+14155992671',
@@ -28,5 +30,6 @@ post '/calc' do
 end
 
 post '/hi' do
-  "<Response><Say>Judy is super excited about Twilio! This is great!</Say></Response>"
+  mytext = "something"
+  "<Response><Say>" + mytext + "</Say></Response>"
 end
