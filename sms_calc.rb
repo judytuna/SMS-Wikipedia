@@ -33,22 +33,11 @@ END
 end
 
 get '/calc' do
-  proxy = ENV['HTTP_PROXY']
-  clnt = HTTPClient.new(proxy)
-  clnt.set_cookie_store("cookie.dat")
-  target = ARGV.shift || "http://en.wikipedia.org/wiki/Main_Page"
-
-  puts
-  puts '= GET content directly'
-  mystring = clnt.get_content(target)
-  puts mystring
+  from = params['From']
+  body = params['Body']
   
-  @client = Twilio::REST::Client.new account_sid, auth_token
-  @client.account.sms.messages.create(
-  :from => '+14155992671',
-  :to => '510-220-7769',
-  :body => clnt.get_content(mystring)
-  )
+  puts body
+  puts from
 end
 
 get '/hi' do
