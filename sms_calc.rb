@@ -55,5 +55,7 @@ get '/hi' do
   file = open('http://en.wikipedia.org/w/api.php?action=parse&format=json&page=Arnold%20Alas&prop=text')
   contents = file.read
   parsed = JSON.parse contents
-  "<Response><Say>" + parsed['parse']['text']['*'] + "</Say></Response>"
+  text = parsed['parse']['text']['*']
+  stripped = text.gsub(/<\/?[^>]*>/,"")
+  "<Response><Say>" + stripped + "</Say></Response>"
 end
