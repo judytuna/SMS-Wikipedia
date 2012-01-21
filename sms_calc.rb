@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'twilio-ruby'
 require './rpn_calculator'
+require 'httpclient'
 
 account_sid = 'AC60c309b5c40342009c38e91c468ff41a'
 auth_token = '45c473926f66f85d5ec3bf82f318c305'
@@ -30,6 +31,6 @@ post '/calc' do
 end
 
 post '/hi' do
-  mytext = "something"
+  mytext = open-uri(
   "<Response><Say>" + mytext + "</Say></Response>"
 end
