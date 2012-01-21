@@ -27,17 +27,18 @@ post '/calc' do
   proxy = ENV['HTTP_PROXY']
   clnt = HTTPClient.new(proxy)
   clnt.set_cookie_store("cookie.dat")
-  target = ARGV.shift || "http://sharp-autumn-7065.heroku.com/"
+  target = ARGV.shift || "http://en.wikipedia.org/w/api.php?format=xml&action=query&titles=Main%20Page&prop=revisions&rvprop=content"
 
   puts
   puts '= GET content directly'
-  puts clnt.get_content(target)
+  mystring = clnt.get_content(target)
+  puts mystring
   
   @client = Twilio::REST::Client.new account_sid, auth_token
   @client.account.sms.messages.create(
   :from => '+14155992671',
   :to => '510-220-7769',
-  :body => clnt.get_content(target)
+  :body => clnt.get_content(mystring)
   )
 end
 
