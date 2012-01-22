@@ -42,12 +42,12 @@ get '/calc' do
 
   @client = Twilio::REST::Client.new account_sid, auth_token
 
-  callurl = URI::HTTP.build({:host => 'sharp-autumn-7065.heroku.com', :path => '/call', :query => {:page => body}})
+  callurl = URI::HTTP.build({:host => 'sharp-autumn-7065.heroku.com', :path => '/call', :query => 'page=' + URI.escape(body)})
 
   call = @client.account.calls.create(
   :from => '+14155992671',
   :to => userphone,
-  :url => callurl
+  :url => callurl.to_s
   )
 end
 
