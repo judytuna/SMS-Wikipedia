@@ -46,6 +46,7 @@ get '/calc' do
   :from => '+14155992671',
   :to => userphone,
   :url => 'http://sharp-autumn-7065.heroku.com/call?' + body
+  )
 end
 
 get '/hi' do
