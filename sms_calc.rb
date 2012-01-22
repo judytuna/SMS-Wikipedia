@@ -37,7 +37,7 @@ get '/calc' do
   body = params['Body']
   
   puts body
-  puts from
+  puts userphone
   puts params.to_s
 
   @client = Twilio::REST::Client.new account_sid, auth_token
