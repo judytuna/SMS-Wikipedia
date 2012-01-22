@@ -37,13 +37,10 @@ get '/calc' do
   userphone = params['From']
   body = params['Body']
   
-  @client = Twilio::REST::Client.new(
-    ENV['SMSWIKI_ACCOUNTSID'], 
-    ENV['SMSWIKI_AUTHTOKEN'], 
-  )
+  @client = Twilio::REST::Client.new ENV['SMSWIKI_ACCOUNTSID'], ENV['SMSWIKI_AUTHTOKEN']
 
   callurl = URI::HTTP.build({
-    :host => hostport
+    :host => hostport,
     :path => pathPrefix + '/call',
     :query => 'page=' + URI.escape(body)
   })
