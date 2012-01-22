@@ -64,6 +64,17 @@ end
 
 post '/call' do
   puts 'ur in call now'
-  "<Response><Say>hello</Say></Response>"
-  # pagename = params[
+  query = 'action=parse&format=json&page=' + URI.escape(params['page'])
+  url = URI::HTTP.build({
+    :host => 'en.wikipedia.org', 
+    :path => '/w/api.php', 
+    :query => query
+  })
+  
+  file = open(url)
+  contents = file.read
+  parsed = JSON.parse contents
+  text = parsed['parse']['text']['*']
+  stripped = text.gsub(/<\/?[^>]*>/,"")
+  "<Response><Say>" + stripped + "</Say></Response>"
 end
