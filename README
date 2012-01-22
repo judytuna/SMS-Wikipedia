@@ -1,4 +1,4 @@
-MediaWiki-SMS
+SMS-Wikipedia
 =============
 
 Experimental voice interface for Wikipedia, mediated by the Twilio API. SMS a query to a shortcode,
