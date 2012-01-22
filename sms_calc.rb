@@ -44,6 +44,8 @@ get '/calc' do
 
   callurl = URI::HTTP.build({:host => 'sharp-autumn-7065.heroku.com', :path => '/call', :query => 'page=' + URI.escape(body)})
 
+  puts "url:" + callurl.to_s
+  
   call = @client.account.calls.create(
   :from => '+14155992671',
   :to => userphone,
@@ -61,6 +63,7 @@ get '/hi' do
 end
 
 get '/call' do
+  puts 'ur in call now'
   "<Response><Say>hello</Say></Response>"
   # pagename = params[
 end
