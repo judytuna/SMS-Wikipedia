@@ -62,7 +62,7 @@ get '/hi' do
   "<Response><Say>" + stripped + "</Say></Response>"
 end
 
-get '/call' do
+post '/call' do
   puts 'ur in call now'
   "<Response><Say>hello</Say></Response>"
   # pagename = params[
