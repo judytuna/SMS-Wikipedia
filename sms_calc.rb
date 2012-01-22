@@ -5,9 +5,7 @@ require './rpn_calculator'
 require 'httpclient'
 require 'open-uri'
 require 'json'
-
-account_sid = 'AC60c309b5c40342009c38e91c468ff41a'
-auth_token = '45c473926f66f85d5ec3bf82f318c305'
+require './settings'
 
 get '/' do
   <<END
@@ -40,9 +38,16 @@ get '/calc' do
   puts userphone
   puts params.to_s
 
-  @client = Twilio::REST::Client.new account_sid, auth_token
+  @client = Twilio::REST::Client.new(
+    Settings::AccountSid, 
+    Settings::AuthToken
+  )
 
-  callurl = URI::HTTP.build({:host => 'sharp-autumn-7065.heroku.com', :path => '/call', :query => 'page=' + URI.escape(body)})
+  callurl = URI::HTTP.build({
+    :host => Settings::AppHost, 
+    :path => Settings::AppPath + '/call', 
+    :query => 'page=' + URI.escape(body)
+  })
 
   puts "url:" + callurl.to_s
   
