@@ -58,6 +58,6 @@ get '/hi' do
 end
 
 get '/call' do
-  <Say>hello</Say>
+  "<Say>hello</Say>"
   # pagename = params[
 end
