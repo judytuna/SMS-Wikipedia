@@ -5,7 +5,6 @@ require './rpn_calculator'
 require 'httpclient'
 require 'open-uri'
 require 'json'
-require './settings'
 
 get '/' do
   <<END
@@ -31,30 +30,28 @@ END
 end
 
 get '/calc' do
+  hostport = request.host_with_port
+  # analyze request.url for path? Irrelevant on heroku...
+  pathPrefix = ''
+
   userphone = params['From']
   body = params['Body']
   
-  puts body
-  puts userphone
-  puts params.to_s
-
   @client = Twilio::REST::Client.new(
-    Settings::AccountSid, 
-    Settings::AuthToken
+    ENV['SMSWIKI_ACCOUNTSID'], 
+    ENV['SMSWIKI_AUTHTOKEN'], 
   )
 
   callurl = URI::HTTP.build({
-    :host => Settings::AppHost, 
-    :path => Settings::AppPath + '/call', 
+    :host => hostport
+    :path => pathPrefix + '/call',
     :query => 'page=' + URI.escape(body)
   })
 
-  puts "url:" + callurl.to_s
-  
   call = @client.account.calls.create(
-  :from => '+14155992671',
-  :to => userphone,
-  :url => callurl.to_s
+    :from => ENV['SMSWIKI_FROMPHONE'],
+    :to => userphone,
+    :url => callurl.to_s
   )
 end
 
