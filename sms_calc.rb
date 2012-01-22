@@ -9,24 +9,11 @@ require 'json'
 get '/' do
   <<END
   Hi! Call or text (415) 599-2671 with Judy's PIN. Text app not done yet =)
-  <form>
+  <form action="/call" method="POST">
    <label for="page">Page:</label><input type="text" name="page" size="20">
    <br/><input type="submit" value="submit"/>
   </form>
 END
-
-  # set up a client to talk to the Twilio REST API
-#  @client = Twilio::REST::Client.new account_sid, auth_token
-
-# the sandbox number is  (415) 599-2671
-# my pin is 3940-6402
-
-  # send an sms
-#  @client.account.sms.messages.create(
-#  :from => '+14155992671',
-#  :to => '510-220-7769',
-#  :body => 4 + 4
-#  )
 end
 
 get '/calc' do
@@ -68,12 +55,12 @@ post '/call' do
     :host => 'en.wikipedia.org', 
     :path => '/w/api.php', 
     :query => query
-  })
-  
-  file = open(url)
+  }).to_s
+ 
+  file = open(url, 'User-Agent' => 'ruby')
   contents = file.read
   parsed = JSON.parse contents
   text = parsed['parse']['text']['*']
-  stripped = text.gsub(/<\/?[^>]*>/,"")
+  stripped = text.gsub(/<table.*?<\/table>/m,"").gsub(/<\/?[^>]*>/,"")
   "<Response><Say>" + stripped + "</Say></Response>"
 end
