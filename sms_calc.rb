@@ -33,11 +33,19 @@ END
 end
 
 get '/calc' do
-  from = params['From']
+  userphone = params['From']
   body = params['Body']
   
   puts body
   puts from
+  puts params.to_s
+
+  @client = Twilio::REST::Client.new account_sid, auth_token
+
+  call = @client.account.calls.create(
+  :from => '+14155992671',
+  :to => userphone,
+  :url => 'http://sharp-autumn-7065.heroku.com/call?' + body
 end
 
 get '/hi' do
@@ -47,4 +55,9 @@ get '/hi' do
   text = parsed['parse']['text']['*']
   stripped = text.gsub(/<\/?[^>]*>/,"")
   "<Response><Say>" + stripped + "</Say></Response>"
+end
+
+get '/call' do
+  <Say>hello</Say>
+  # pagename = params[
 end
