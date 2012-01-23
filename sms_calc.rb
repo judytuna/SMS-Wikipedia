@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'twilio-ruby'
-require './rpn_calculator'
 require 'httpclient'
 require 'open-uri'
 require 'json'
