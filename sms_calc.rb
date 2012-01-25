@@ -7,11 +7,21 @@ require 'json'
 
 get '/' do
   <<END
-  Hi! Call or text (415) 599-2671 with Judy's PIN. Text app not done yet =)
-  <form action="/call" method="POST">
-   <label for="page">Page:</label><input type="text" name="page" size="20">
-   <br/><input type="submit" value="submit"/>
-  </form>
+  Hi! Send an SMS to 415-799-4519 with your query. I don't know about capitals or disambiguation yet, so you'll have to make sure all the caps are correct. Some to try:
+  <ul>
+    <li>Unicorn</li>
+    <li>San Francisco 49ers</li>
+    <li>Hedy Lamarr</li>
+    <li>The Beatles</li>
+    <li>Hackers (film)</li>
+  </ul>
+  I do know about parentheses, so that last one will work =) have fun! <br />
+  <br />
+  Code at: <a href="https://github.com/judytuna/SMS-Wikipedia">https://github.com/judytuna/SMS-Wikipedia</a>
+  #<form action="/call" method="POST">
+  # <label for="page">Page:</label><input type="text" name="page" size="20">
+  # <br/><input type="submit" value="submit"/>
+  #</form>
 END
 end
 
