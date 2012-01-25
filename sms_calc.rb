@@ -58,7 +58,7 @@ get '/hi' do
 end
 
 post '/call' do
-  puts 'we are in call now'
+  puts 'we are in /call now'
   query = 'action=parse&format=json&page=' + URI.escape(params['page'])
   url = URI::HTTP.build({
     :host => 'en.wikipedia.org', 
