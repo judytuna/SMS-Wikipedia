@@ -25,7 +25,7 @@ get '/' do
 END
 end
 
-get '/calc' do
+get '/getsms' do
   hostport = request.host_with_port
   # analyze request.url for path? Irrelevant on heroku...
   pathPrefix = ''

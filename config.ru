@@ -1,2 +1,2 @@
-require './sms_calc'
+require './sms_wiki'
 run Sinatra::Application
