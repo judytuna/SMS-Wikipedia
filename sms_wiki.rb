@@ -7,7 +7,7 @@ require 'json'
 
 get '/' do
   <<END
-  Hi! Send an SMS to 415-799-4519 with your query. I don't know about capitals or disambiguation yet, so you'll have to make sure all the caps are correct. Some to try:
+  Hi! Send an SMS to #{ENV['SMSWIKI_FROMPHONE']} with your query. I don't know about disambiguation yet.  Some to try:
   <ul>
     <li>Unicorn</li>
     <li>San Francisco 49ers</li>
@@ -17,7 +17,8 @@ get '/' do
   </ul>
   I do know about parentheses, so that last one will work =) have fun! <br />
   <br />
-  Code at: <a href="https://github.com/judytuna/SMS-Wikipedia">https://github.com/judytuna/SMS-Wikipedia</a>
+  Code at: <a href="https://github.com/OkGoDoIt/SMS-Wikipedia">https://github.com/OkGoDoIt/SMS-Wikipedia</a><br/>
+  Forked from: <a href="https://github.com/judytuna/SMS-Wikipedia">https://github.com/judytuna/SMS-Wikipedia</a>
   #<form action="/call" method="POST">
   # <label for="page">Page:</label><input type="text" name="page" size="20">
   # <br/><input type="submit" value="submit"/>
@@ -49,7 +50,7 @@ get '/getsms' do
 end
 
 get '/hi' do
-  file = open('http://en.wikipedia.org/w/api.php?action=parse&format=json&page=Arnold%20Alas&prop=text')
+  file = open('http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&page=Arnold%20Alas&prop=text')
   contents = file.read
   parsed = JSON.parse contents
   text = parsed['parse']['text']['*']
@@ -59,7 +60,7 @@ end
 
 post '/call' do
   puts 'we are in /call now'
-  query = 'action=parse&format=json&page=' + URI.escape(params['page'])
+  query = 'action=parse&format=json&redirects&page=' + URI.escape(params['page'])
   url = URI::HTTP.build({
     :host => 'en.wikipedia.org', 
     :path => '/w/api.php', 
