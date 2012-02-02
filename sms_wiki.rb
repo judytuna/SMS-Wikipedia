@@ -17,8 +17,7 @@ get '/' do
   </ul>
   I do know about parentheses, so that last one will work =) have fun! <br />
   <br />
-  Code at: <a href="https://github.com/OkGoDoIt/SMS-Wikipedia">https://github.com/OkGoDoIt/SMS-Wikipedia</a><br/>
-  Forked from: <a href="https://github.com/judytuna/SMS-Wikipedia">https://github.com/judytuna/SMS-Wikipedia</a>
+  Code at: <a href="https://github.com/judytuna/SMS-Wikipedia">https://github.com/judytuna/SMS-Wikipedia</a><br/>
   #<form action="/call" method="POST">
   # <label for="page">Page:</label><input type="text" name="page" size="20">
   # <br/><input type="submit" value="submit"/>
