@@ -35,10 +35,20 @@ get '/getsms' do
   
   @client = Twilio::REST::Client.new ENV['SMSWIKI_ACCOUNTSID'], ENV['SMSWIKI_AUTHTOKEN']
 
+  languages = [de, es, en, fr]
+
+  if ( body =~ /(..)::(.*)/ )
+    lang = $1
+    pagetitle = $2
+  else
+    lang = 'en'
+    pagetitle = body
+  end
+
   callurl = URI::HTTP.build({
     :host => hostport,
     :path => pathPrefix + '/call',
-    :query => 'page=' + URI.escape(body)
+    :query => 'lang=' + lang + '&page=' + URI.escape(pagetitle)
   })
 
   call = @client.account.calls.create(
@@ -48,20 +58,12 @@ get '/getsms' do
   )
 end
 
-get '/hi' do
-  file = open('http://en.wikipedia.org/w/api.php?action=parse&format=json&redirects&page=Arnold%20Alas&prop=text')
-  contents = file.read
-  parsed = JSON.parse contents
-  text = parsed['parse']['text']['*']
-  stripped = text.gsub(/<\/?[^>]*>/,"")
-  "<Response><Say>" + stripped + "</Say></Response>"
-end
 
 post '/call' do
   puts 'we are in /call now'
   query = 'action=parse&format=json&redirects&page=' + URI.escape(params['page'])
   url = URI::HTTP.build({
-    :host => 'en.wikipedia.org', 
+    :host => params['lang'] + '.wikipedia.org', 
     :path => '/w/api.php', 
     :query => query
   }).to_s
