@@ -35,7 +35,7 @@ get '/getsms' do
   
   @client = Twilio::REST::Client.new ENV['SMSWIKI_ACCOUNTSID'], ENV['SMSWIKI_AUTHTOKEN']
 
-  languages = [de, es, en, fr]
+  languages = ['de', 'es', 'en', 'fr']
 
   if ( body =~ /(..)::(.*)/ )
     lang = $1
