@@ -72,6 +72,7 @@ post '/call' do
   contents = file.read
   parsed = JSON.parse contents
   text = parsed['parse']['text']['*']
+  lang = params['lang']
   stripped = text.gsub(/<table.*?<\/table>/m,"").gsub(/<\/?[^>]*>/,"")
-  '<Response><Say voice="woman">' + stripped + '</Say></Response>'
+  '<Response><Say voice="woman" language="' + lang +'">' + stripped + '</Say></Response>'
 end
