@@ -62,12 +62,16 @@ end
 post '/call' do
   puts 'we are in /call now'
   query = 'action=parse&format=json&redirects&page=' + URI.escape(params['page'])
+  params['lang'] = params['lang'] || 'en'
   url = URI::HTTP.build({
     :host => params['lang'] + '.wikipedia.org', 
     :path => '/w/api.php', 
     :query => query
   }).to_s
  
+  puts 'W'*52
+  puts url
+
   file = open(url, 'User-Agent' => 'ruby')
   contents = file.read
   parsed = JSON.parse contents
