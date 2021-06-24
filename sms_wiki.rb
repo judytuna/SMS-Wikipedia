@@ -51,7 +51,7 @@ get '/getsms' do
     :query => 'lang=' + lang + '&page=' + URI.escape(pagetitle)
   })
 
-  call = @client.account.calls.create(
+  call = @client.calls.create(
     :from => ENV['SMSWIKI_FROMPHONE'],
     :to => userphone,
     :url => callurl.to_s
